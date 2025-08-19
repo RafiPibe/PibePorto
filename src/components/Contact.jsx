@@ -28,7 +28,7 @@ function Contact() {
         >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Get In Touch</h2>
             <p className="text-lg text-gray-400 max-w-xl mx-auto mb-8">
-                I'm currently open to new opportunities...
+                I'm currently open to new opportunities and collaborations. Feel free to reach out if you have a project in mind or just want to say hello!
             </p>
             <div className="relative inline-flex justify-center items-center">
                 <button 
