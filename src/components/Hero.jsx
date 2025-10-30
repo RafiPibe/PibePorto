@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Hero() {
     return (
@@ -10,9 +11,9 @@ function Hero() {
                 <p className="text-lg md:text-xl text-gray-400 mb-8">
                     Currently studying at University of Queensland.
                 </p>
-                <a href="#work" className="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors duration-300">
+                <Link to="/#work" className="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors duration-300">
                     View My Work
-                </a>
+                </Link>
             </div>
         </section>
     );

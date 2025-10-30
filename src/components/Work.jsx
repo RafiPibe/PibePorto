@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 import kenanganImg from '../assets/Kenangan.svg';
@@ -13,7 +14,7 @@ function Work() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
 
                 {/* Project 1 */}
-                <a href="#" className="group block">
+                <Link to="/work/kenangan" className="group block">
                     <div className="overflow-hidden rounded-lg mb-6">
                         <img 
                         src={kenanganImg}
@@ -23,10 +24,10 @@ function Work() {
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">Kenangan.com</h3>
                     <p className="text-gray-400">Kenangan.com is the first Gift Registry application in Indonesia that makes your special moments more special.</p>
-                </a>
+                </Link>
                 
                 {/* Project 2 */}
-                <a href="#" className="group block">
+                <Link to="/work/docs-repo" className="group block">
                     <div className="overflow-hidden rounded-lg mb-6">
                         <img 
                         src={docsRepoImg}
@@ -36,7 +37,7 @@ function Work() {
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">Document Repository</h3>
                     <p className="text-gray-400">A document repository web app focused on streamlining work and projects in company</p>
-                </a>
+                </Link>
             </div>
         </section>
     );

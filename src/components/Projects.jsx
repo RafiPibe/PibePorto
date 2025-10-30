@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 import yayplantsImg from '../assets/YayPlants.svg';
@@ -15,7 +16,7 @@ function Projects() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
 
                 {/* Project 1 */}
-                <a href="#" className="group block">
+                <Link to="/project/yay-plants" className="group block">
                     <div className="overflow-hidden rounded-lg mb-6">
                         <img 
                         src={yayplantsImg}
@@ -25,10 +26,10 @@ function Projects() {
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">YayPlants!</h3>
                     <p className="text-gray-400">A mobile first web application focusing on finding your desired plants to take pictures of.</p>
-                </a>
+                </Link>
 
                 {/* Project 2 */}
-                <a href="#" className="group block">
+                <Link to="/project/accommodation-x" className="group block">
                     <div className="overflow-hidden rounded-lg mb-6">
                         <img 
                         src={AccommodationXImg}
@@ -38,10 +39,10 @@ function Projects() {
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">AccommodationX</h3>
                     <p className="text-gray-400">A mobile app that helps you in finding accommodation and helping you ease up your living.</p>
-                </a>
+                </Link>
 
                 {/* Project 3 */}
-                <a href="#" className="group block">
+                <Link to="/project/lingo-link" className="group block">
                     <div className="overflow-hidden rounded-lg mb-6">
                         <img 
                         src={LingoLinkImg} 
@@ -50,11 +51,11 @@ function Projects() {
                         />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">LingoLink</h3>
-                    <p className="text-gray-400">A mobile app focusing on connecting students and finding those with the same interests.</p>
-                </a>
+                    <p className="text-gray-400">A mobile app focusing on connecting students and and finding those with the same interests.</p>
+                </Link>
 
                 {/* Project 4 */}
-                <a href="#" className="group block">
+                <Link to="/project/bca-revamp" className="group block">
                     <div className="overflow-hidden rounded-lg mb-6">
                         <img 
                         src={bcaRevampImg}
@@ -64,7 +65,7 @@ function Projects() {
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">BCA Revamp</h3>
                     <p className="text-gray-400">My twist on the old mybca m-banking</p>
-                </a>
+                </Link>
 
             </div>
         </section>
