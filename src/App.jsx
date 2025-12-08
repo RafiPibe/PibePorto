@@ -45,10 +45,6 @@ function App() {
           } />
           <Route path="/work/kenangan" element={<KenanganPage />} />
           <Route path="/work/docs-repo" element={<DocsRepoPage />} />
-          <Route path="/project/yay-plants" element={<YayPlantsPage />} />
-          <Route path="/project/accommodationx" element={<AccommodationXPage />} />
-          <Route path="/project/lingolink" element={<LingoLinkPage />} />
-          <Route path="/project/bca-revamp" element={<BCARevampPage />} />
         </Routes>
       </main>
       <Footer />
