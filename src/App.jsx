@@ -9,10 +9,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import KenanganPage from './pages/works/Kenangan';
 import DocsRepoPage from './pages/works/DocsRepo';
-import YayPlantsPage from './components/YayPlantsPage';
-import AccommodationXPage from './components/AccommodationXPage';
-import LingoLinkPage from './components/LingoLinkPage';
-import BCARevampPage from './components/BCARevampPage';
 
 function App() {
   const location = useLocation();
