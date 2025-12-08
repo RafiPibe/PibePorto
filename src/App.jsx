@@ -7,8 +7,8 @@ import Work from './components/Work';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import KenanganPage from './components/KenanganPage';
-import DocsRepoPage from './components/DocsRepoPage';
+import KenanganPage from './pages/works/Kenangan';
+import DocsRepoPage from './pages/works/DocsRepo';
 import YayPlantsPage from './components/YayPlantsPage';
 import AccommodationXPage from './components/AccommodationXPage';
 import LingoLinkPage from './components/LingoLinkPage';
@@ -24,6 +24,8 @@ function App() {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [location]);
 
