@@ -9,6 +9,10 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import KenanganPage from './pages/works/Kenangan';
 import DocsRepoPage from './pages/works/DocsRepo';
+import YayPlantsPage from './components/YayPlantsPage';
+import AccommodationXPage from './components/AccommodationXPage';
+import LingoLinkPage from './components/LingoLinkPage';
+import BCARevampPage from './components/BCARevampPage';
 
 function App() {
   const location = useLocation();
@@ -41,6 +45,10 @@ function App() {
           } />
           <Route path="/work/kenangan" element={<KenanganPage />} />
           <Route path="/work/docs-repo" element={<DocsRepoPage />} />
+          <Route path="/project/yay-plants" element={<YayPlantsPage />} />
+          <Route path="/project/accommodationx" element={<AccommodationXPage />} />
+          <Route path="/project/lingolink" element={<LingoLinkPage />} />
+          <Route path="/project/bca-revamp" element={<BCARevampPage />} />
         </Routes>
       </main>
       <Footer />
