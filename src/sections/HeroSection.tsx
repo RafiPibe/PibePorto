@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import Hls from "hls.js";
 
 const roles = ["UI/UX Designer", "Developer", "Creative", "Photographer", "Video Editor"];
 
 export default function HeroSection() {
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -148,6 +150,13 @@ export default function HeroSection() {
           >
             <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
             View My Portfolio
+          </button>
+          <button
+            onClick={() => navigate('/photography')}
+            className="group relative rounded-full text-sm px-7 py-3.5 border-2 border-stroke bg-bg text-text-primary hover:border-transparent transition-all duration-300 hover:scale-105"
+          >
+            <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+            View My Photography
           </button>
         </div>
       </div>

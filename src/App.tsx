@@ -15,6 +15,7 @@ import YayPlantsPage from "./pages/projects/YayPlantsPage";
 import AccommodationXPage from "./pages/projects/AccommodationXPage";
 import LingoLinkPage from "./pages/projects/LingoLinkPage";
 import BCARevampPage from "./pages/projects/BCARevampPage";
+import PhotographyPage from "./pages/photography/PhotographyPage";
 
 function HomePage() {
   return (
@@ -62,6 +63,7 @@ function App() {
             <Route path="/project/accommodationx" element={<AccommodationXPage />} />
             <Route path="/project/lingolink" element={<LingoLinkPage />} />
             <Route path="/project/bca-revamp" element={<BCARevampPage />} />
+            <Route path="/photography" element={<PhotographyPage />} />
           </Routes>
         </>
       )}
