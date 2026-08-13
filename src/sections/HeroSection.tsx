@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Hls from "hls.js";
 
-const roles = ["UI/UX Designer", "Developer", "Creative"];
+const roles = ["UI/UX Designer", "Developer", "Creative", "Photographer", "Video Editor"];
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -106,13 +106,12 @@ export default function HeroSection() {
           >
             {roles[roleIndex]}
           </span>{" "}
-          based in Indonesia.
+          based in Brisbane.
         </p>
 
         {/* Description */}
         <p className="blur-in text-sm md:text-base text-muted max-w-md mx-auto mb-8">
-          Currently studying at University of Queensland. Passionate about
-          creating clean, user-friendly, and good looking interfaces.
+          Passionate about creating clean, user-friendly, and good looking interfaces.
         </p>
 
         {/* CTA Buttons */}
