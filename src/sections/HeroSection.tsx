@@ -108,7 +108,7 @@ export default function HeroSection() {
           >
             {roles[roleIndex]}
           </span>{" "}
-          based in Brisbane.
+          from Indonesia, based in Brisbane.
         </p>
 
         {/* Description */}
@@ -152,11 +152,11 @@ export default function HeroSection() {
             View My Portfolio
           </button>
           <button
-            onClick={() => navigate('/photography')}
+            onClick={() => navigate('/creative')}
             className="group relative rounded-full text-sm px-7 py-3.5 border-2 border-stroke bg-bg text-text-primary hover:border-transparent transition-all duration-300 hover:scale-105"
           >
             <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-            View My Photography
+            View My Creative Works
           </button>
         </div>
       </div>

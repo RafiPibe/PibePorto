@@ -6,7 +6,7 @@ import Hls from "hls.js";
 const socials = [
   { name: "GitHub", href: "https://github.com/RafiPibe" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/faraihanrafia/" },
-  { name: "Art Porto", href: "https://faraihanrafia.carrd.co" },
+  { name: "Creative Porto", href: "/creative" },
 ];
 
 export default function ContactFooter() {

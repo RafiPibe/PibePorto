@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -156,15 +157,13 @@ export default function Explorations() {
               photography, playing games, or watching tokusatsu.
             </p>
           </div>
-          <a
-            href="https://faraihanrafia.carrd.co"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/creative"
             className="group relative inline-flex items-center gap-2 text-sm text-text-primary rounded-full transition-all duration-300"
           >
             <span className="absolute inset-[-2px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="relative flex items-center gap-2 bg-surface rounded-full px-5 py-2.5 border border-stroke group-hover:border-transparent transition-colors">
-              🎨 View Art Portfolio
+              View Creative Portfolio
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -179,7 +178,7 @@ export default function Explorations() {
                 />
               </svg>
             </span>
-          </a>
+          </Link>
         </div>
       </div>
 

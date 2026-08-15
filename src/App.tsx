@@ -63,7 +63,7 @@ function App() {
             <Route path="/project/accommodationx" element={<AccommodationXPage />} />
             <Route path="/project/lingolink" element={<LingoLinkPage />} />
             <Route path="/project/bca-revamp" element={<BCARevampPage />} />
-            <Route path="/photography" element={<PhotographyPage />} />
+            <Route path="/creative" element={<PhotographyPage />} />
           </Routes>
         </>
       )}
