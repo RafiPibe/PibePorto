@@ -20,6 +20,7 @@ const graphicDesigns = Object.keys(designModules).map(path => path.replace('/pub
 export default function PhotographyPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [lightbox, setLightbox] = useState<{ images: string[], index: number } | null>(null);
 
   // Set cream theme for document body just while this component is mounted to prevent global style leak
   // though we will use standard tailwind for the container styling anyway
@@ -29,6 +30,22 @@ export default function PhotographyPage() {
       document.body.style.backgroundColor = ""; // Reset on unmount
     };
   }, []);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightbox) return;
+      if (e.key === 'Escape') {
+        setLightbox(null);
+      } else if (e.key === 'ArrowLeft') {
+        setLightbox(prev => prev ? { ...prev, index: (prev.index - 1 + prev.images.length) % prev.images.length } : null);
+      } else if (e.key === 'ArrowRight') {
+        setLightbox(prev => prev ? { ...prev, index: (prev.index + 1) % prev.images.length } : null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightbox]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -47,6 +64,68 @@ export default function PhotographyPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#2C2C2C] font-body selection:bg-[#E0DDD5]">
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center cursor-pointer"
+            onClick={() => setLightbox(null)}
+          >
+            {/* Frosted Backdrop */}
+            <div className="absolute inset-0 bg-[#2C2C2C]/80 backdrop-blur-md" />
+
+            {/* Close Button */}
+            <button 
+              onClick={(e) => { e.stopPropagation(); setLightbox(null); }}
+              className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-[120]"
+              aria-label="Close"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+
+            {/* Main Image */}
+            <motion.img
+              key={lightbox.index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              src={lightbox.images[lightbox.index]}
+              alt="Preview"
+              className="relative max-w-[90vw] max-h-[90vh] object-contain select-none shadow-2xl z-[105] cursor-default"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            {/* Left Button */}
+            <button 
+              className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center text-white transition-all backdrop-blur-sm z-[110]"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox(prev => prev ? { ...prev, index: (prev.index - 1 + prev.images.length) % prev.images.length } : null);
+              }}
+              aria-label="Previous"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+
+            {/* Right Button */}
+            <button 
+              className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 hover:bg-white/30 flex items-center justify-center text-white transition-all backdrop-blur-sm z-[110]"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox(prev => prev ? { ...prev, index: (prev.index + 1) % prev.images.length } : null);
+              }}
+              aria-label="Next"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md px-6 py-6 md:py-8 md:px-12 flex justify-between items-center border-b border-[#2C2C2C]/10">
         <Link 
@@ -288,7 +367,8 @@ export default function PhotographyPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
-                className="bg-white border border-[#2C2C2C]/10 rounded-xl overflow-hidden aspect-square flex items-center justify-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
+                className="bg-white border border-[#2C2C2C]/10 rounded-xl overflow-hidden aspect-square flex items-center justify-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
+                onClick={() => setLightbox({ images: logos, index })}
               >
                 <img 
                   src={src} 
@@ -317,7 +397,8 @@ export default function PhotographyPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
-                className="break-inside-avoid"
+                className="break-inside-avoid cursor-pointer"
+                onClick={() => setLightbox({ images: graphicDesigns, index })}
               >
                 <img 
                   src={src} 
@@ -346,7 +427,8 @@ export default function PhotographyPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
-                className="break-inside-avoid"
+                className="break-inside-avoid cursor-pointer"
+                onClick={() => setLightbox({ images: photographs, index })}
               >
                 <img 
                   src={src} 
