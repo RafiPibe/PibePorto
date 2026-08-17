@@ -6,16 +6,16 @@ const webseriesThumbnail = "/thumbnails/webseriesThumbnail.png";
 const projectThumbnail = "/thumbnails/ProjectThumbnail.jpg";
 
 // Load all images in the photograph directory from public
-const photoModules = import.meta.glob('/public/photograph/*.{jpg,jpeg,png}');
+const photoModules = import.meta.glob('/public/photograph/*.{svg,SVG,png,PNG,jpg,JPG,jpeg,JPEG}');
 const photographs = Object.keys(photoModules).map(path => path.replace('/public', ''));
 
 // Load logos
-const logoModules = import.meta.glob('/public/logo/*.{svg,png,jpg,jpeg}');
+const logoModules = import.meta.glob('/public/logo/*.{svg,SVG,png,PNG,jpg,JPG,jpeg,JPEG}');
 const logos = Object.keys(logoModules).map(path => path.replace('/public', ''));
 
-// Load posters
-const posterModules = import.meta.glob('/public/poster/*.{svg,png,jpg,jpeg}');
-const posters = Object.keys(posterModules).map(path => path.replace('/public', ''));
+// Load graphic designs
+const designModules = import.meta.glob('/public/graphics/*.{svg,SVG,png,PNG,jpg,JPG,jpeg,JPEG}');
+const graphicDesigns = Object.keys(designModules).map(path => path.replace('/public', ''));
 
 export default function PhotographyPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -91,10 +91,10 @@ export default function PhotographyPage() {
                   className="fixed top-0 right-0 h-screen w-64 md:w-80 bg-[#FAF9F6] border-l border-[#2C2C2C]/10 shadow-2xl z-[55] flex flex-col pt-32 px-8 md:px-12"
                 >
                   <div className="flex flex-col gap-6">
-                    {['Videos', 'Logos', 'Posters', 'Photographs'].map((item) => (
+                    {['Videos', 'Logos', 'Graphic Designs', 'Photographs'].map((item) => (
                       <motion.button
                         key={item}
-                        onClick={() => scrollToSection(item.toLowerCase())}
+                        onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
                         className="text-left text-2xl md:text-3xl font-display italic text-[#2C2C2C]/60 hover:text-[#2C2C2C] transition-colors relative group w-max"
                         whileHover={{ x: 10 }}
                       >
@@ -177,7 +177,7 @@ export default function PhotographyPage() {
           >
             <a href="https://www.youtube.com/watch?v=SOZp_exSqgw&list=PLprmAgZ2qyRDSKRS2RlmZGPKXi49h0hSR" target="_blank" rel="noreferrer" className="block relative overflow-hidden rounded-md aspect-video bg-[#2C2C2C]/5">
               <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors z-10 flex items-center justify-center">
-                <div className="w-16 h-16 bg-[#FAF9F6] rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-[#FAF9F6] rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-[1.3] transition-transform duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-[#2C2C2C]"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function PhotographyPage() {
           >
             <a href="https://www.youtube.com/watch?v=n2YSpFqP-VU&t=107s" target="_blank" rel="noreferrer" className="block relative overflow-hidden rounded-md aspect-video bg-[#2C2C2C]/5">
               <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors z-10 flex items-center justify-center">
-                <div className="w-16 h-16 bg-[#FAF9F6] rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-[#FAF9F6] rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-[1.3] transition-transform duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-[#2C2C2C]"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 </div>
               </div>
@@ -215,6 +215,58 @@ export default function PhotographyPage() {
             </a>
             <div className="mt-6 text-center px-4">
               <h3 className="text-xl font-display italic leading-tight uppercase">WHAT IF BLIND DEAF AND MUTE CHALLENGE WAS DRIVING?</h3>
+              <p className="text-sm text-[#2C2C2C]/60 mt-2">Watch on YouTube</p>
+            </div>
+          </motion.div>
+
+          {/* Video 3: Motion Graphic 1 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative group block overflow-hidden rounded-md"
+          >
+            <a href="https://www.youtube.com/watch?v=RJvazXPXvkY" target="_blank" rel="noreferrer" className="block relative overflow-hidden rounded-md aspect-video bg-[#2C2C2C]/5">
+              <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors z-10 flex items-center justify-center">
+                <div className="w-16 h-16 bg-[#FAF9F6] rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-[1.3] transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-[#2C2C2C]"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+              </div>
+              <img 
+                src="https://img.youtube.com/vi/RJvazXPXvkY/maxresdefault.jpg" 
+                alt="Motion Graphic 1" 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out" 
+              />
+            </a>
+            <div className="mt-6 text-center px-4">
+              <h3 className="text-xl font-display italic leading-tight uppercase">Motion Graphic 1</h3>
+              <p className="text-sm text-[#2C2C2C]/60 mt-2">Watch on YouTube</p>
+            </div>
+          </motion.div>
+
+          {/* Video 4: Motion Graphic 2 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="relative group block overflow-hidden rounded-md"
+          >
+            <a href="https://www.youtube.com/watch?v=Xp4fSGbDOdU" target="_blank" rel="noreferrer" className="block relative overflow-hidden rounded-md aspect-video bg-[#2C2C2C]/5">
+              <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors z-10 flex items-center justify-center">
+                <div className="w-16 h-16 bg-[#FAF9F6] rounded-full flex items-center justify-center pl-1 shadow-lg group-hover:scale-[1.3] transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-[#2C2C2C]"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+              </div>
+              <img 
+                src="https://img.youtube.com/vi/Xp4fSGbDOdU/maxresdefault.jpg" 
+                alt="Motion Graphic 2" 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out" 
+              />
+            </a>
+            <div className="mt-6 text-center px-4">
+              <h3 className="text-xl font-display italic leading-tight uppercase">Motion Graphic 2</h3>
               <p className="text-sm text-[#2C2C2C]/60 mt-2">Watch on YouTube</p>
             </div>
           </motion.div>
@@ -236,12 +288,12 @@ export default function PhotographyPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
-                className="bg-white border border-[#2C2C2C]/10 rounded-xl overflow-hidden aspect-square flex items-center justify-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="bg-white border border-[#2C2C2C]/10 rounded-xl overflow-hidden aspect-square flex items-center justify-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
               >
                 <img 
                   src={src} 
                   alt={`Logo ${index + 1}`} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
               </motion.div>
@@ -250,27 +302,27 @@ export default function PhotographyPage() {
         </section>
       )}
 
-      {/* Posters Section */}
-      {posters.length > 0 && (
-        <section id="posters" className="px-6 md:px-12 max-w-5xl mx-auto mb-32 pt-10">
-          <div className="flex items-center gap-4 mb-10">
-            <h2 className="text-3xl font-display italic">Posters</h2>
+      {/* Graphic Designs Section */}
+      {graphicDesigns.length > 0 && (
+        <section id="graphic-designs" className="px-4 md:px-8 max-w-7xl mx-auto mb-32 pt-10">
+          <div className="flex items-center gap-4 mb-10 px-2 md:px-4">
+            <h2 className="text-3xl font-display italic">Graphic Designs</h2>
             <div className="h-px bg-[#2C2C2C]/10 flex-grow" />
           </div>
-          <div className="flex flex-wrap justify-center gap-8">
-            {posters.map((src, index) => (
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
+            {graphicDesigns.map((src, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="w-full max-w-xl bg-[#2C2C2C]/5 rounded-xl overflow-hidden group border border-[#2C2C2C]/10"
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
+                className="break-inside-avoid"
               >
                 <img 
                   src={src} 
-                  alt={`Poster ${index + 1}`} 
-                  className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                  alt={`Graphic Design ${index + 1}`} 
+                  className="w-full h-auto object-cover rounded-xl border border-[#2C2C2C]/10 hover:shadow-xl hover:scale-105 transition-all duration-500 ease-out"
                   loading="lazy"
                 />
               </motion.div>
@@ -299,7 +351,7 @@ export default function PhotographyPage() {
                 <img 
                   src={src} 
                   alt={`Photograph ${index + 1}`} 
-                  className="w-full h-auto object-cover rounded-sm hover:scale-[1.02] transition-transform duration-500 ease-out"
+                  className="w-full h-auto object-cover rounded-sm hover:scale-105 transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
               </motion.div>
