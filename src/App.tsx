@@ -11,6 +11,7 @@ import Stats from "./sections/Stats";
 import ContactFooter from "./sections/ContactFooter";
 import KenanganPage from "./pages/works/KenanganPage";
 import DocsRepoPage from "./pages/works/DocsRepoPage";
+import AvocainPage from "./pages/works/AvocainPage";
 import YayPlantsPage from "./pages/projects/YayPlantsPage";
 import AccommodationXPage from "./pages/projects/AccommodationXPage";
 import LingoLinkPage from "./pages/projects/LingoLinkPage";
@@ -59,6 +60,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/work/kenangan" element={<KenanganPage />} />
             <Route path="/work/docs-repo" element={<DocsRepoPage />} />
+            <Route path="/work/avocain" element={<AvocainPage />} />
             <Route path="/project/yay-plants" element={<YayPlantsPage />} />
             <Route path="/project/accommodationx" element={<AccommodationXPage />} />
             <Route path="/project/lingolink" element={<LingoLinkPage />} />

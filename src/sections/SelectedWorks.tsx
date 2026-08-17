@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 
 const projects = [
   {
+    slug: "avocain",
+    title: "Avocain",
+    description: "A front-end development and UX research project focusing on user flows and high-fidelity prototypes.",
+    image: "/projects/Avocain.svg",
+    gradient: "from-emerald-500 via-teal-400/60 to-transparent",
+  },
+  {
     slug: "kenangan",
     title: "Kenangan.com",
     description:
