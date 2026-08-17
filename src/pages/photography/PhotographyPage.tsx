@@ -1,15 +1,25 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import webseriesThumbnail from "../../thumbnails/webseriesThumbnail.png";
-import projectThumbnail from "../../thumbnails/ProjectThumbnail.jpg";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Load all images in the photograph directory
-const imageModules = import.meta.glob('../../photograph/*.{jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' });
-const images = Object.values(imageModules) as string[];
+const webseriesThumbnail = "/thumbnails/webseriesThumbnail.png";
+const projectThumbnail = "/thumbnails/ProjectThumbnail.jpg";
+
+// Load all images in the photograph directory from public
+const photoModules = import.meta.glob('/public/photograph/*.{jpg,jpeg,png}');
+const photographs = Object.keys(photoModules).map(path => path.replace('/public', ''));
+
+// Load logos
+const logoModules = import.meta.glob('/public/logo/*.{svg,png,jpg,jpeg}');
+const logos = Object.keys(logoModules).map(path => path.replace('/public', ''));
+
+// Load posters
+const posterModules = import.meta.glob('/public/poster/*.{svg,png,jpg,jpeg}');
+const posters = Object.keys(posterModules).map(path => path.replace('/public', ''));
 
 export default function PhotographyPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Set cream theme for document body just while this component is mounted to prevent global style leak
   // though we will use standard tailwind for the container styling anyway
@@ -20,10 +30,25 @@ export default function PhotographyPage() {
     };
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#2C2C2C] font-body selection:bg-[#E0DDD5]">
       {/* Header */}
-      <header className="px-6 py-8 md:py-12 md:px-12 flex justify-between items-center border-b border-[#2C2C2C]/10">
+      <header className="sticky top-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md px-6 py-6 md:py-8 md:px-12 flex justify-between items-center border-b border-[#2C2C2C]/10">
         <Link 
           to="/"
           className="group flex items-center gap-2 text-sm font-medium tracking-wide hover:opacity-70 transition-opacity"
@@ -31,10 +56,68 @@ export default function PhotographyPage() {
           <span className="group-hover:-translate-x-1 transition-transform">←</span>
           Back to Main
         </Link>
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-[#2C2C2C] flex items-center justify-center text-[#FAF9F6] font-display italic text-xs">
-            PB
-          </div>
+        <div className="relative">
+          {/* Burger Box */}
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="w-10 h-10 rounded-md border border-[#2C2C2C]/20 flex flex-col items-center justify-center gap-1.5 hover:bg-[#2C2C2C]/5 transition-colors z-[60] relative"
+            aria-label="Menu"
+          >
+            <span className={`block w-5 h-px bg-[#2C2C2C] transition-transform duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+            <span className={`block w-5 h-px bg-[#2C2C2C] transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-px bg-[#2C2C2C] transition-transform duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+          </button>
+
+          {/* Side Panel Menu */}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <>
+                {/* Backdrop */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="fixed inset-0 bg-[#2C2C2C]/20 backdrop-blur-sm z-[45]"
+                />
+                
+                {/* Panel */}
+                <motion.div
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                  className="fixed top-0 right-0 h-screen w-64 md:w-80 bg-[#FAF9F6] border-l border-[#2C2C2C]/10 shadow-2xl z-[55] flex flex-col pt-32 px-8 md:px-12"
+                >
+                  <div className="flex flex-col gap-6">
+                    {['Videos', 'Logos', 'Posters', 'Photographs'].map((item) => (
+                      <motion.button
+                        key={item}
+                        onClick={() => scrollToSection(item.toLowerCase())}
+                        className="text-left text-2xl md:text-3xl font-display italic text-[#2C2C2C]/60 hover:text-[#2C2C2C] transition-colors relative group w-max"
+                        whileHover={{ x: 10 }}
+                      >
+                        {item}
+                        <span className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-[#2C2C2C] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </motion.button>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-auto pb-12">
+                    <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-4">
+                      Connect
+                    </p>
+                    <div className="flex gap-4 text-[#2C2C2C]/60">
+                      <a href="https://www.youtube.com/@Farxygo" target="_blank" rel="noreferrer" className="hover:text-[#2C2C2C] transition-colors">YT</a>
+                      <a href="https://www.instagram.com/rafi_pibe/?hl=en" target="_blank" rel="noreferrer" className="hover:text-[#2C2C2C] transition-colors">IG</a>
+                      <a href="https://www.tiktok.com/@pibegraph" target="_blank" rel="noreferrer" className="hover:text-[#2C2C2C] transition-colors">TK</a>
+                    </div>
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </div>
       </header>
 
@@ -78,7 +161,11 @@ export default function PhotographyPage() {
       </section>
 
       {/* Featured Videos Section */}
-      <section className="px-6 md:px-12 max-w-5xl mx-auto mb-20">
+      <section id="videos" className="px-6 md:px-12 max-w-5xl mx-auto mb-32 pt-10">
+        <div className="flex items-center gap-4 mb-10">
+          <h2 className="text-3xl font-display italic">Videos</h2>
+          <div className="h-px bg-[#2C2C2C]/10 flex-grow" />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {/* Video 1: Webseries */}
           <motion.div
@@ -134,33 +221,97 @@ export default function PhotographyPage() {
         </div>
       </section>
 
-      {/* Gallery Grid */}
-      <section className="px-4 md:px-8 pb-32" ref={containerRef}>
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
-          {images.map((src, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
-              className="break-inside-avoid"
-            >
-              <img 
-                src={src} 
-                alt={`Photograph ${index + 1}`} 
-                className="w-full h-auto object-cover rounded-sm hover:scale-[1.02] transition-transform duration-500 ease-out"
-                loading="lazy"
-              />
-            </motion.div>
-          ))}
+      {/* Logos Section */}
+      {logos.length > 0 && (
+        <section id="logos" className="px-6 md:px-12 max-w-5xl mx-auto mb-32 pt-10">
+          <div className="flex items-center gap-4 mb-10">
+            <h2 className="text-3xl font-display italic">Logos</h2>
+            <div className="h-px bg-[#2C2C2C]/10 flex-grow" />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {logos.map((src, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
+                className="bg-white border border-[#2C2C2C]/10 rounded-xl overflow-hidden aspect-square flex items-center justify-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                <img 
+                  src={src} 
+                  alt={`Logo ${index + 1}`} 
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Posters Section */}
+      {posters.length > 0 && (
+        <section id="posters" className="px-6 md:px-12 max-w-5xl mx-auto mb-32 pt-10">
+          <div className="flex items-center gap-4 mb-10">
+            <h2 className="text-3xl font-display italic">Posters</h2>
+            <div className="h-px bg-[#2C2C2C]/10 flex-grow" />
+          </div>
+          <div className="flex flex-wrap justify-center gap-8">
+            {posters.map((src, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="w-full max-w-xl bg-[#2C2C2C]/5 rounded-xl overflow-hidden group border border-[#2C2C2C]/10"
+              >
+                <img 
+                  src={src} 
+                  alt={`Poster ${index + 1}`} 
+                  className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Gallery Grid (Photographs) */}
+      <section id="photographs" className="px-4 md:px-8 pb-32 pt-10" ref={containerRef}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-10 px-2 md:px-4">
+            <h2 className="text-3xl font-display italic">Photographs</h2>
+            <div className="h-px bg-[#2C2C2C]/10 flex-grow" />
+          </div>
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
+            {photographs.map((src, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
+                className="break-inside-avoid"
+              >
+                <img 
+                  src={src} 
+                  alt={`Photograph ${index + 1}`} 
+                  className="w-full h-auto object-cover rounded-sm hover:scale-[1.02] transition-transform duration-500 ease-out"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-12 border-t border-[#2C2C2C]/10 text-center flex flex-col items-center justify-center">
+      <footer className="px-6 py-12 border-t border-[#2C2C2C]/10 text-center flex flex-col items-center justify-center bg-[#FAF9F6]">
         <p className="text-sm text-[#2C2C2C]/60 mb-4">
-          All photographs taken by Faraihan Rafi Adityawarman.
+          All media and works by Faraihan Rafi Adityawarman.
         </p>
         <Link 
           to="/"
