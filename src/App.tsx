@@ -17,6 +17,7 @@ import AccommodationXPage from "./pages/projects/AccommodationXPage";
 import LingoLinkPage from "./pages/projects/LingoLinkPage";
 import BCARevampPage from "./pages/projects/BCARevampPage";
 import PhotographyPage from "./pages/photography/PhotographyPage";
+import LinksPage from "./pages/LinksPage";
 
 function HomePage() {
   return (
@@ -42,17 +43,19 @@ function ScrollToTop() {
 }
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const isLinksPage = location.pathname.startsWith("/links");
+  const [isLoading, setIsLoading] = useState(!isLinksPage);
 
   return (
     <>
       <AnimatePresence>
-        {isLoading && (
+        {isLoading && !isLinksPage && (
           <LoadingScreen onComplete={() => setIsLoading(false)} />
         )}
       </AnimatePresence>
 
-      {!isLoading && (
+      {(!isLoading || isLinksPage) && (
         <>
           <ScrollToTop />
           <Navbar />
@@ -66,6 +69,7 @@ function App() {
             <Route path="/project/lingolink" element={<LingoLinkPage />} />
             <Route path="/project/bca-revamp" element={<BCARevampPage />} />
             <Route path="/creative" element={<PhotographyPage />} />
+            <Route path="/links" element={<LinksPage />} />
           </Routes>
         </>
       )}
