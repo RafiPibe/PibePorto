@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import HeroSection from "./sections/HeroSection";
 import SelectedWorks from "./sections/SelectedWorks";
@@ -43,36 +41,22 @@ function ScrollToTop() {
 }
 
 function App() {
-  const location = useLocation();
-  const isLinksPage = location.pathname.startsWith("/links");
-  const [isLoading, setIsLoading] = useState(!isLinksPage);
-
   return (
     <>
-      <AnimatePresence>
-        {isLoading && !isLinksPage && (
-          <LoadingScreen onComplete={() => setIsLoading(false)} />
-        )}
-      </AnimatePresence>
-
-      {(!isLoading || isLinksPage) && (
-        <>
-          <ScrollToTop />
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/work/kenangan" element={<KenanganPage />} />
-            <Route path="/work/docs-repo" element={<DocsRepoPage />} />
-            <Route path="/work/avocain" element={<AvocainPage />} />
-            <Route path="/project/yay-plants" element={<YayPlantsPage />} />
-            <Route path="/project/accommodationx" element={<AccommodationXPage />} />
-            <Route path="/project/lingolink" element={<LingoLinkPage />} />
-            <Route path="/project/bca-revamp" element={<BCARevampPage />} />
-            <Route path="/creative" element={<PhotographyPage />} />
-            <Route path="/links" element={<LinksPage />} />
-          </Routes>
-        </>
-      )}
+      <ScrollToTop />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/work/kenangan" element={<KenanganPage />} />
+        <Route path="/work/docs-repo" element={<DocsRepoPage />} />
+        <Route path="/work/avocain" element={<AvocainPage />} />
+        <Route path="/project/yay-plants" element={<YayPlantsPage />} />
+        <Route path="/project/accommodationx" element={<AccommodationXPage />} />
+        <Route path="/project/lingolink" element={<LingoLinkPage />} />
+        <Route path="/project/bca-revamp" element={<BCARevampPage />} />
+        <Route path="/creative" element={<PhotographyPage />} />
+        <Route path="/links" element={<LinksPage />} />
+      </Routes>
     </>
   );
 }

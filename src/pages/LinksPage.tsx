@@ -13,6 +13,7 @@ export default function LinksPage() {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = "Faraihan Rafi Adityawarman — Links";
+    document.body.style.backgroundColor = theme === "dark" ? "#09090b" : "#f0ede6";
 
     // Set meta theme color
     let metaTheme = document.querySelector('meta[name="theme-color"]');
@@ -27,6 +28,7 @@ export default function LinksPage() {
 
     return () => {
       document.title = prevTitle;
+      document.body.style.backgroundColor = "";
       if (metaTheme && prevThemeColor) {
         metaTheme.setAttribute("content", prevThemeColor);
       }
