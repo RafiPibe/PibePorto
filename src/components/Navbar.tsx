@@ -101,7 +101,7 @@ export default function Navbar() {
     }
   };
 
-  if (location.pathname === "/creative" || location.pathname.startsWith("/links")) {
+  if (location.pathname === "/creative" || location.pathname === "/photo" || location.pathname.startsWith("/links")) {
     return null;
   }
 
