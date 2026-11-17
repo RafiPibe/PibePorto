@@ -517,6 +517,14 @@
   --brand-glow: rgba(99, 102, 241, 0.18);
 }
 
+/* Photo (Warm Amber) */
+.pibelinks-page .card-photo {
+  --brand-color: #f59e0b;
+  --brand-bg: rgba(245, 158, 11, 0.1);
+  --brand-border: rgba(245, 158, 11, 0.28);
+  --brand-glow: rgba(245, 158, 11, 0.18);
+}
+
 /* 2. Instagram (Sunset Gradient / Magenta) */
 .pibelinks-page .card-instagram {
   --brand-color: #d62976;

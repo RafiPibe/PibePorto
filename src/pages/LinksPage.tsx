@@ -322,7 +322,100 @@ export default function LinksPage() {
 
         {/* Links Stack */}
         <section className="links-section" aria-label="Primary destinations">
-          {/* 1. Portfolio (Tech) */}
+          {/* 1. Portfolio (Creative) */}
+          <Link
+            to="/creative"
+            className="link-card card-portfolio featured"
+            onMouseMove={handleCardMouseMove}
+          >
+            <div className="card-glow" aria-hidden="true" />
+            <div className="card-inner">
+              <div className="card-icon-box">
+                <svg
+                  className="card-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </div>
+              <div className="card-content">
+                <div className="card-title-row">
+                  <span className="card-title">Creative Portfolio</span>
+                  <span className="badge featured-badge">Creative</span>
+                </div>
+                <span className="card-description">
+                  Creative works such as Videos, Designs, etc.
+                </span>
+              </div>
+              <div className="card-arrow" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </div>
+            </div>
+          </Link>
+
+          {/* 2. Photo */}
+          <Link
+            to="/photo"
+            className="link-card card-photo featured"
+            onMouseMove={handleCardMouseMove}
+          >
+            <div className="card-glow" aria-hidden="true" />
+            <div className="card-inner">
+              <div className="card-icon-box">
+                <svg
+                  className="card-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
+              </div>
+              <div className="card-content">
+                <div className="card-title-row">
+                  <span className="card-title">Photo</span>
+                  <span className="badge featured-badge">Photos</span>
+                </div>
+                <span className="card-description">
+                  Photography collection, street, and perspectives
+                </span>
+              </div>
+              <div className="card-arrow" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </div>
+            </div>
+          </Link>
+
+          {/* 3. Portfolio (Tech) */}
           <Link
             to="/"
             className="link-card card-portfolio featured"
@@ -352,53 +445,6 @@ export default function LinksPage() {
                 </div>
                 <span className="card-description">
                   Selected UI/UX designs, case studies, and engineering projects
-                </span>
-              </div>
-              <div className="card-arrow" aria-hidden="true">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M7 17L17 7M17 7H7M17 7v10" />
-                </svg>
-              </div>
-            </div>
-          </Link>
-
-          {/* 2. Portfolio (Creative) */}
-          <Link
-            to="/creative"
-            className="link-card card-portfolio featured"
-            onMouseMove={handleCardMouseMove}
-          >
-            <div className="card-glow" aria-hidden="true" />
-            <div className="card-inner">
-              <div className="card-icon-box">
-                <svg
-                  className="card-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>
-              </div>
-              <div className="card-content">
-                <div className="card-title-row">
-                  <span className="card-title">Creative Portfolio</span>
-                  <span className="badge featured-badge">Creative</span>
-                </div>
-                <span className="card-description">
-                  Creative works such as Photography, Designs, etc.
                 </span>
               </div>
               <div className="card-arrow" aria-hidden="true">
